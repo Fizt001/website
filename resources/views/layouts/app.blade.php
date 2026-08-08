@@ -31,11 +31,7 @@
         <li><a href="{{ route('smp') }}">SMP</a></li>
         <li><a href="{{ route('spmb') }}">SPMB</a></li>
         <li><a href="{{ route('bkk') }}">BKK</a></li>
-        @auth
-        <li><a href="{{ route('admin.dashboard') }}" class="navbar-cta"><i class="ri-settings-3-line"></i> Admin</a></li>
-        @else
-        <li><a href="{{ route('login') }}" class="navbar-cta"><i class="ri-admin-line"></i> Admin</a></li>
-        @endauth
+
     </ul>
     <button class="navbar-hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
