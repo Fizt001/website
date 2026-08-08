@@ -38,14 +38,14 @@ class ProgramController extends Controller
         $data = $request->only('unit', 'type', 'title', 'description', 'icon');
 
         if ($request->hasFile('image_icon')) {
-            $data['image_icon'] = $request->file('image_icon')->store('programs', 'public');
+            $data['image_icon'] = $request->file('image_icon')->store('programs', 'uploads');
         }
 
         $program = Program::create($data);
 
         if ($request->hasFile('galleries')) {
             foreach ($request->file('galleries') as $image) {
-                $path = $image->store('programs', 'public');
+                $path = $image->store('programs', 'uploads');
                 $program->galleries()->create(['image_path' => $path]);
             }
         }
@@ -72,14 +72,14 @@ class ProgramController extends Controller
         $data = $request->only('title', 'type', 'description', 'icon');
 
         if ($request->hasFile('image_icon')) {
-            $data['image_icon'] = $request->file('image_icon')->store('programs', 'public');
+            $data['image_icon'] = $request->file('image_icon')->store('programs', 'uploads');
         }
 
         $program->update($data);
 
         if ($request->hasFile('galleries')) {
             foreach ($request->file('galleries') as $image) {
-                $path = $image->store('programs', 'public');
+                $path = $image->store('programs', 'uploads');
                 $program->galleries()->create(['image_path' => $path]);
             }
         }
@@ -91,7 +91,7 @@ class ProgramController extends Controller
     {
         $unit = $program->unit;
         foreach ($program->galleries as $gallery) {
-            Storage::disk('public')->delete($gallery->image_path);
+            Storage::disk('uploads')->delete($gallery->image_path);
         }
         $program->delete();
         return redirect()->route('admin.programs.index', ['unit' => $unit])->with('success', 'Program berhasil dihapus.');

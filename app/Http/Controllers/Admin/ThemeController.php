@@ -49,7 +49,7 @@ class ThemeController extends Controller
         ]);
 
         if ($request->hasFile('logo')) {
-            $path = $request->file('logo')->store('logos', 'public');
+            $path = $request->file('logo')->store('logos', 'uploads');
             $key = 'site_logo';
             if ($request->logo_type === 'smk') $key = 'logo_smk';
             if ($request->logo_type === 'smp') $key = 'logo_smp';
@@ -67,7 +67,7 @@ class ThemeController extends Controller
         ]);
 
         if ($request->hasFile('hero_bg_image')) {
-            $path = $request->file('hero_bg_image')->store('backgrounds', 'public');
+            $path = $request->file('hero_bg_image')->store('backgrounds', 'uploads');
             Setting::set('hero_bg_image', $path);
         }
 
