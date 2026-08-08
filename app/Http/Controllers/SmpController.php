@@ -14,6 +14,7 @@ class SmpController extends Controller
         $settings = Setting::all()->pluck('value', 'key');
         $sliders = Slider::unit('smp')->get();
         $contents = Content::where('unit', 'smp')->get()->groupBy('section');
-        return view('smp.index', compact('theme', 'settings', 'sliders', 'contents'));
+        $programs = \App\Models\Program::with('galleries')->where('unit', 'smp')->get();
+        return view('smp.index', compact('theme', 'settings', 'sliders', 'contents', 'programs'));
     }
 }

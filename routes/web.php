@@ -24,8 +24,15 @@ require __DIR__.'/auth.php';
 // Admin routes (protected)
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    
+    // Programs (Jurusan, Ekskul, dll)
+    Route::resource('programs', \App\Http\Controllers\Admin\ProgramController::class)->except(['show']);
+    Route::delete('programs/gallery/{gallery}', [\App\Http\Controllers\Admin\ProgramController::class, 'deleteGallery'])->name('programs.gallery.destroy');
+    
     Route::get('/themes', [ThemeController::class, 'index'])->name('themes');
     Route::post('/themes/activate', [ThemeController::class, 'activate'])->name('themes.activate');
+    Route::post('/settings/logo', [ThemeController::class, 'uploadLogo'])->name('settings.logo');
+    Route::post('/settings/hero', [ThemeController::class, 'uploadHeroBg'])->name('settings.hero');
     Route::get('/sliders', [SliderController::class, 'index'])->name('sliders');
     Route::post('/sliders', [SliderController::class, 'store'])->name('sliders.store');
     Route::delete('/sliders/{slider}', [SliderController::class, 'destroy'])->name('sliders.destroy');

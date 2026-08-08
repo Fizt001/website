@@ -7,6 +7,7 @@
 {{-- HERO --}}
 <section class="hero" id="beranda" style="min-height:60vh;">
     <div class="hero-bg">
+        @include('partials.hero-overlay')
         <div class="hero-orb hero-orb-1" style="background:rgba(194,65,12,0.12);"></div>
         <canvas id="particles-canvas"></canvas>
         @if($sliders->count() > 0)
@@ -95,7 +96,7 @@
 {{-- PERSYARATAN --}}
 <section class="section" id="persyaratan">
     <div class="container">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;" class="reveal">
+        <div class="vm-grid reveal" style="gap:3rem;">
             <div>
                 <div class="section-tag"><i class="ri-file-list-line"></i> Persyaratan</div>
                 <h2 class="section-title" style="text-align:left;margin-top:0.75rem;">Persyaratan Pendaftaran</h2>
@@ -157,7 +158,7 @@
             @endif
             <form action="{{ route('spmb.submit') }}" method="POST" class="card" style="padding:2.5rem;">
                 @csrf
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+                <div class="vm-grid" style="gap:1.25rem;">
                     <div class="form-group" style="grid-column:1/-1;">
                         <label class="form-label">Nama Lengkap Calon Siswa *</label>
                         <input type="text" name="nama" class="form-control" placeholder="Nama lengkap sesuai akte" required value="{{ old('nama') }}">

@@ -7,6 +7,7 @@
 {{-- HERO --}}
 <section class="hero" id="beranda" style="min-height:60vh;">
     <div class="hero-bg">
+        @include('partials.hero-overlay')
         <div class="hero-orb hero-orb-1" style="background:rgba(109,40,217,0.12);"></div>
         <canvas id="particles-canvas"></canvas>
         @if($sliders->count() > 0)
@@ -39,7 +40,7 @@
 {{-- STATS --}}
 <div style="background:var(--card-bg);border-bottom:1px solid var(--card-border);padding:2rem 0;">
     <div class="container">
-        <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="stats-grid">
             <div class="stat-item reveal" style="text-align:center;">
                 <div class="stat-number" data-count="500" data-suffix="+">0</div>
                 <div class="stat-label">Alumni Tersalurkan</div>
@@ -63,12 +64,12 @@
 {{-- TENTANG BKK --}}
 <section class="section" id="tentang">
     <div class="container">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="reveal">
+        <div class="vm-grid reveal" style="align-items:center;gap:3rem;">
             <div>
                 <div class="section-tag"><i class="ri-briefcase-4-line"></i> Tentang BKK</div>
                 <h2 class="section-title" style="text-align:left;margin-top:0.75rem;">{{ $contents['about'][0]->value ?? 'BKK Tinta Emas Indonesia' }}</h2>
                 <div class="section-divider" style="margin:1rem 0;"></div>
-                <p style="color:var(--text-secondary);line-height:1.9;">{{ $contents['about'][1]->value ?? '' }}</p>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.95rem;">{{ $contents['about'][1]->value ?? '' }}</p>
                 <div style="margin-top:2rem;display:flex;flex-direction:column;gap:1rem;">
                     @foreach(['Seleksi dan penyaluran tenaga kerja lulusan','Pembinaan karir dan soft skill','Kerjasama aktif dengan DU/DI nasional & multinasional','Informasi lowongan kerja terkini','Pelatihan sebelum penempatan kerja'] as $item)
                     <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;color:var(--text-secondary);">

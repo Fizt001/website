@@ -31,7 +31,12 @@
 
 <div class="login-wrap">
     <div class="login-card">
-        <div class="login-logo">TE</div>
+        @php $siteLogo = \App\Models\Setting::get('site_logo'); @endphp
+        @if($siteLogo)
+            <img src="{{ Storage::url($siteLogo) }}" alt="Logo" class="login-logo" style="background:transparent;object-fit:contain;">
+        @else
+            <div class="login-logo">TE</div>
+        @endif
         <div class="login-title">Admin Login</div>
         <div class="login-sub">Masuk ke panel admin Tinta Emas Indonesia</div>
 

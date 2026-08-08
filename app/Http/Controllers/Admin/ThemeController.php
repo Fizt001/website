@@ -40,4 +40,43 @@ class ThemeController extends Controller
         Setting::set('active_theme', $request->theme);
         return back()->with('success', 'Tema berhasil diaktifkan!');
     }
+
+    public function uploadLogo(Request $request)
+    {
+        $request->validate([
+            'logo' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
+            'logo_type' => 'required|in:yayasan,smk,smp'
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $path = $request->file('logo')->store('logos', 'public');
+            $key = 'site_logo';
+            if ($request->logo_type === 'smk') $key = 'logo_smk';
+            if ($request->logo_type === 'smp') $key = 'logo_smp';
+            Setting::set($key, $path);
+        }
+
+        return back()->with('success', 'Logo berhasil diperbarui!');
+    }
+
+    public function uploadHeroBg(Request $request)
+    {
+        $request->validate([
+            'hero_bg_image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:3072',
+            'hero_bg_opacity' => 'required|numeric|min:0|max:0.9',
+        ]);
+
+        if ($request->hasFile('hero_bg_image')) {
+            $path = $request->file('hero_bg_image')->store('backgrounds', 'public');
+            Setting::set('hero_bg_image', $path);
+        }
+
+        Setting::set('hero_bg_opacity', $request->hero_bg_opacity);
+
+        if ($request->has('remove_bg')) {
+            Setting::set('hero_bg_image', null);
+        }
+
+        return back()->with('success', 'Latar belakang utama berhasil diperbarui!');
+    }
 }

@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/main.css?v={{ filemtime(public_path('css/main.css')) }}">
     <link rel="stylesheet" href="/css/theme-{{ $theme ?? 'aurora' }}.css" id="theme-stylesheet">
     @stack('head')
 </head>
@@ -19,7 +19,12 @@
 
 <nav class="navbar" id="navbar">
     <a href="{{ route('home') }}" class="navbar-brand">
-        <div style="width:44px;height:44px;border-radius:10px;background:var(--btn-primary);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:white;font-family:var(--font-heading);">TE</div>
+        @php $siteLogo = \App\Models\Setting::get('site_logo'); @endphp
+        @if($siteLogo)
+            <img src="{{ Storage::url($siteLogo) }}" alt="Logo" style="height:44px;object-fit:contain;border-radius:8px;">
+        @else
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #00f5ff, #7c3aed); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; color: white; flex-shrink: 0;">TE</div>
+        @endif
         <div class="navbar-name">
             Tinta Emas Indonesia
             <span>Yayasan Pendidikan</span>
@@ -33,8 +38,8 @@
         <li><a href="{{ route('bkk') }}">BKK</a></li>
 
     </ul>
-    <button class="navbar-hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
+    <button class="navbar-hamburger" id="hamburger" aria-label="Menu" style="background:transparent;border:none;padding:0;">
+        <i class="ri-menu-3-line" style="font-size:1.8rem;color:var(--text-primary);"></i>
     </button>
 </nav>
 

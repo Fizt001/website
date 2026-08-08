@@ -7,6 +7,7 @@
 {{-- HERO + SLIDER --}}
 <section class="hero" id="beranda" style="min-height:70vh;">
     <div class="hero-bg">
+        @include('partials.hero-overlay')
         <div class="hero-orb hero-orb-1"></div>
         <canvas id="particles-canvas"></canvas>
     </div>
@@ -28,7 +29,12 @@
     <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,58,95,0.85),rgba(0,0,0,0.6));z-index:1;"></div>
     @endif
     <div class="hero-content" style="z-index:3;">
-        <div class="hero-badge"><i class="ri-graduation-cap-line"></i> SMK Tinta Emas Indonesia</div>
+        @php $logoSmk = \App\Models\Setting::get('logo_smk'); @endphp
+        @if($logoSmk)
+            <img src="{{ Storage::url($logoSmk) }}" alt="Logo SMK" style="height:80px;margin-bottom:1.5rem;object-fit:contain;animation: fadeUp 0.8s ease-out;">
+        @else
+            <div class="hero-badge"><i class="ri-graduation-cap-line"></i> SMK Tinta Emas Indonesia</div>
+        @endif
         <h1 class="hero-title">{{ $contents['hero'][0]->value ?? 'SMK Tinta Emas Indonesia' }}</h1>
         <p class="hero-subtitle">{{ $contents['hero'][1]->value ?? 'Sekolah Menengah Kejuruan unggulan dengan program keahlian berbasis industri.' }}</p>
         <div class="hero-actions">
@@ -40,22 +46,22 @@
 
 {{-- QUICK INFO BAR --}}
 <div style="background:var(--card-bg);border-bottom:1px solid var(--card-border);padding:1.25rem 0;">
-    <div class="container" style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;">
-        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-secondary);">
-            <i class="ri-medal-line" style="color:var(--accent);font-size:1.2rem;"></i>
-            <span>Akreditasi: <strong style="color:var(--text-primary);">{{ $contents['akreditasi'][0]->value ?? 'A (Unggul)' }}</strong></span>
+    <div class="container info-bar-grid">
+        <div class="info-bar-item">
+            <i class="ri-medal-line"></i>
+            <span>Akreditasi: <strong>{{ $contents['akreditasi'][0]->value ?? 'A (Unggul)' }}</strong></span>
         </div>
-        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-secondary);">
-            <i class="ri-group-line" style="color:var(--accent);font-size:1.2rem;"></i>
-            <span>Siswa Aktif: <strong style="color:var(--text-primary);">800+</strong></span>
+        <div class="info-bar-item">
+            <i class="ri-group-line"></i>
+            <span>Siswa Aktif: <strong>800+</strong></span>
         </div>
-        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-secondary);">
-            <i class="ri-briefcase-line" style="color:var(--accent);font-size:1.2rem;"></i>
-            <span>Mitra Industri: <strong style="color:var(--text-primary);">120+</strong></span>
+        <div class="info-bar-item">
+            <i class="ri-briefcase-line"></i>
+            <span>Mitra Industri: <strong>120+</strong></span>
         </div>
-        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-secondary);">
-            <i class="ri-building-2-line" style="color:var(--accent);font-size:1.2rem;"></i>
-            <span>Program Keahlian: <strong style="color:var(--text-primary);">6 Jurusan</strong></span>
+        <div class="info-bar-item">
+            <i class="ri-building-2-line"></i>
+            <span>Program Keahlian: <strong>6 Jurusan</strong></span>
         </div>
     </div>
 </div>
@@ -63,12 +69,12 @@
 {{-- TENTANG SMK --}}
 <section class="section" id="tentang">
     <div class="container">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="reveal">
+        <div class="vm-grid reveal" style="align-items:center;gap:3rem;">
             <div>
                 <div class="section-tag"><i class="ri-school-line"></i> Tentang SMK</div>
                 <h2 class="section-title" style="text-align:left;margin-top:0.75rem;">{{ $contents['about'][0]->value ?? 'Tentang SMK Tinta Emas Indonesia' }}</h2>
                 <div class="section-divider" style="margin:1rem 0;"></div>
-                <p style="color:var(--text-secondary);line-height:1.9;">{{ $contents['about'][1]->value ?? '' }}</p>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.95rem;">{{ $contents['about'][1]->value ?? '' }}</p>
                 <a href="{{ route('spmb') }}" class="btn-primary" style="margin-top:2rem;display:inline-flex;"><i class="ri-user-add-line"></i> Daftar Sekarang</a>
             </div>
             <div class="card" style="padding:2rem;">
@@ -94,23 +100,29 @@
             <p class="section-subtitle">Pilih jurusan sesuai minat dan bakat Anda, semua dirancang selaras dengan kebutuhan industri terkini.</p>
         </div>
         <div class="programs-grid">
-            @foreach([
-                ['💻','Teknik Komputer & Jaringan','Rekayasa perangkat keras, jaringan komputer, dan keamanan siber.'],
-                ['📱','Rekayasa Perangkat Lunak','Pengembangan aplikasi mobile, web, dan sistem informasi.'],
-                ['⚡','Teknik Instalasi Tenaga Listrik','Instalasi, pemeliharaan, dan perbaikan sistem kelistrikan.'],
-                ['🔧','Teknik Kendaraan Ringan','Perawatan dan perbaikan kendaraan bermotor modern.'],
-                ['🏢','Akuntansi & Keuangan Lembaga','Keuangan, akuntansi, perbankan, dan administrasi bisnis.'],
-                ['🎨','Desain Komunikasi Visual','Branding, ilustrasi digital, fotografi, dan media kreatif.'],
-            ] as [$icon,$title,$desc])
-            <div class="program-card reveal">
-                <div class="program-icon">{{ $icon }}</div>
-                <div class="program-title">{{ $title }}</div>
-                <div class="program-desc">{{ $desc }}</div>
+            @foreach($programs as $program)
+            <div class="program-card reveal" onclick="openProgramModal({{ $program->id }})" title="Klik untuk melihat detail jurusan">
+                <div class="program-icon">
+                    @if($program->image_icon)
+                        <img src="{{ Storage::url($program->image_icon) }}" alt="{{ $program->title }}" style="width:48px;height:48px;object-fit:contain;border-radius:8px;">
+                    @else
+                        {{ $program->icon }}
+                    @endif
+                </div>
+                <div class="program-title">{{ $program->title }}</div>
+                <div class="program-desc">{{ $program->description }}</div>
+                <div class="program-link" style="margin-top:1.5rem;font-size:0.85rem;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:0.25rem;">
+                    Lihat Galeri <i class="ri-arrow-right-line"></i>
+                </div>
             </div>
             @endforeach
         </div>
     </div>
 </section>
+
+{{-- MODAL JURUSAN --}}
+@include('partials.program-modal')
+
 
 {{-- VISI MISI --}}
 <section class="section" id="visi-misi">

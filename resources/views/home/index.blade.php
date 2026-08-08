@@ -8,6 +8,7 @@
 {{-- HERO --}}
 <section class="hero" id="beranda">
     <div class="hero-bg">
+        @include('partials.hero-overlay')
         <div class="hero-orb hero-orb-1"></div>
         <div class="hero-orb hero-orb-2"></div>
         <canvas id="particles-canvas"></canvas>
@@ -169,7 +170,7 @@
 @endif
 
 {{-- STATISTIK --}}
-<section class="section stats-section" id="statistik" style="background:var(--bg-secondary);">
+<section class="section stats-section" id="statistik">
     <div class="container">
         <div class="section-header reveal">
             <div class="section-tag"><i class="ri-bar-chart-line"></i> Pencapaian</div>
@@ -208,12 +209,12 @@
 {{-- TENTANG YAYASAN --}}
 <section class="section" id="tentang">
     <div class="container">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="reveal">
+        <div class="vm-grid reveal" style="align-items:center;gap:3rem;">
             <div>
                 <div class="section-tag"><i class="ri-building-line"></i> Tentang Kami</div>
                 <h2 class="section-title" style="text-align:left;margin-top:0.75rem;">{{ $contents['about'][0]->value ?? 'Tentang Yayasan Tinta Emas Indonesia' }}</h2>
                 <div class="section-divider" style="margin:1rem 0;"></div>
-                <p style="color:var(--text-secondary);line-height:1.9;font-size:1rem;">
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.95rem;">
                     {{ $contents['about'][1]->value ?? 'Yayasan Tinta Emas Indonesia adalah lembaga pendidikan swasta yang berdedikasi tinggi dalam membentuk karakter dan kompetensi generasi muda Indonesia.' }}
                 </p>
                 <div style="display:flex;gap:1.5rem;margin-top:2rem;flex-wrap:wrap;">

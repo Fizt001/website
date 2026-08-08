@@ -14,6 +14,7 @@ class SmkController extends Controller
         $settings = Setting::all()->pluck('value', 'key');
         $sliders = Slider::unit('smk')->get();
         $contents = Content::where('unit', 'smk')->get()->groupBy('section');
-        return view('smk.index', compact('theme', 'settings', 'sliders', 'contents'));
+        $programs = \App\Models\Program::where('unit', 'smk')->with('galleries')->get();
+        return view('smk.index', compact('theme', 'settings', 'sliders', 'contents', 'programs'));
     }
 }

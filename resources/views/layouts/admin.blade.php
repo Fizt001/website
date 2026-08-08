@@ -45,7 +45,12 @@
 {{-- NAVBAR ADMIN --}}
 <nav class="navbar" id="navbar">
     <a href="{{ route('home') }}" class="navbar-brand">
-        <div style="width:44px;height:44px;border-radius:10px;background:var(--btn-primary);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:white;font-family:var(--font-heading);">TE</div>
+        @php $siteLogo = \App\Models\Setting::get('site_logo'); @endphp
+        @if($siteLogo)
+            <img src="{{ Storage::url($siteLogo) }}" alt="Logo" style="height:44px;object-fit:contain;border-radius:8px;">
+        @else
+            <div style="width:44px;height:44px;border-radius:10px;background:var(--btn-primary);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:white;font-family:var(--font-heading);">TE</div>
+        @endif
         <div class="navbar-name">Admin Panel<span>Tinta Emas Indonesia</span></div>
     </a>
     <div style="display:flex;align-items:center;gap:1rem;">
@@ -73,6 +78,17 @@
         </a>
         <a href="{{ route('admin.sliders') }}" class="sidebar-link {{ request()->routeIs('admin.sliders') ? 'active' : '' }}">
             <i class="ri-image-2-line"></i> Kelola Slider
+        </a>
+
+        <div class="sidebar-label">Data Unit</div>
+        <a href="{{ route('admin.programs.index', ['unit' => 'smk']) }}" class="sidebar-link {{ request()->routeIs('admin.programs.*') && request('unit') == 'smk' ? 'active' : '' }}">
+            <i class="ri-graduation-cap-line"></i> Jurusan SMK
+        </a>
+        <a href="{{ route('admin.programs.index', ['unit' => 'smp']) }}" class="sidebar-link {{ request()->routeIs('admin.programs.*') && request('unit') == 'smp' ? 'active' : '' }}">
+            <i class="ri-book-open-line"></i> Ekskul SMP
+        </a>
+        <a href="{{ route('admin.programs.index', ['unit' => 'bkk']) }}" class="sidebar-link {{ request()->routeIs('admin.programs.*') && request('unit') == 'bkk' ? 'active' : '' }}">
+            <i class="ri-briefcase-line"></i> Program BKK
         </a>
 
         <div class="sidebar-label">Halaman Publik</div>
