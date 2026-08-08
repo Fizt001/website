@@ -1,0 +1,137 @@
+/* =============================================
+   THEME 2: ACADEMIC BRILLIANCE — Profesional Bersih
+   Warna: Deep Blue + Gold + White
+   ============================================= */
+
+:root {
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Backgrounds */
+    --bg-primary:    #f5f7fb;
+    --bg-secondary:  #eef1f8;
+    --bg-tertiary:   #ffffff;
+
+    /* Text */
+    --text-primary:  #0f2040;
+    --text-secondary:#4a6080;
+
+    /* Accent - Gold */
+    --accent:        #d4880a;
+    --accent-rgb:    212, 136, 10;
+    --accent-glow:   rgba(212,136,10,0.2);
+    --accent2:       #1e3a5f;
+
+    /* Navbar */
+    --navbar-bg:     rgba(255,255,255,0.95);
+    --navbar-border: rgba(30,58,95,0.1);
+    --navbar-shadow: 0 4px 20px rgba(30,58,95,0.08);
+
+    /* Cards */
+    --card-bg:       #ffffff;
+    --card-border:   rgba(30,58,95,0.1);
+    --card-radius:   12px;
+    --card-shadow-hover: 0 20px 50px rgba(30,58,95,0.12);
+
+    /* Buttons */
+    --btn-primary:       linear-gradient(135deg, #1e3a5f 0%, #2d5491 100%);
+    --btn-primary-text:  #ffffff;
+    --btn-shadow:        0 4px 15px rgba(30,58,95,0.25);
+    --btn-shadow-hover:  0 8px 30px rgba(30,58,95,0.35);
+
+    /* Slider */
+    --slider-btn-bg: rgba(30,58,95,0.7);
+    --dot-inactive:  rgba(30,58,95,0.2);
+
+    /* Input */
+    --input-bg:      #ffffff;
+    --input-border:  rgba(30,58,95,0.15);
+
+    /* Footer */
+    --footer-bg:     #0f2040;
+
+    /* Tags/Badges */
+    --tag-bg:        rgba(212,136,10,0.1);
+    --badge-bg:      rgba(212,136,10,0.1);
+    --badge-border:  rgba(212,136,10,0.25);
+}
+
+/* Override text color in footer */
+.footer { color: #c5d3e0; }
+.footer .footer-brand-name,
+.footer .footer-heading { color: #ffffff; }
+.footer .footer-desc,
+.footer .footer-links a,
+.footer .footer-copy { color: #8aa0b8; }
+.footer .footer-links a:hover { color: var(--accent); }
+.footer .social-icon { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: #8aa0b8; }
+.footer .footer-copy { color: #6a84a0; }
+
+/* ─── Hero Background ─── */
+.hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2a4f82 40%, #1a4570 100%);
+    position: relative;
+    overflow: hidden;
+}
+.hero-bg {
+    background: transparent;
+}
+
+/* Geometric pattern */
+.hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Gold ribbon stripe */
+.hero-bg::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+    background: linear-gradient(90deg, transparent, #d4880a, #f4a71d, #d4880a, transparent);
+}
+
+/* ─── Text on hero ─── */
+.hero-title, .hero-subtitle, .hero-badge { color: #ffffff !important; }
+.hero-badge { background: rgba(255,255,255,0.1) !important; border-color: rgba(255,255,255,0.2) !important; color: #f4a71d !important; }
+.hero-title .highlight {
+    background: linear-gradient(135deg, #f4a71d, #ffd147);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ─── Gold Accent Line ─── */
+.section-divider {
+    width: 60px; height: 4px;
+    background: linear-gradient(90deg, #1e3a5f, #d4880a);
+    border-radius: 2px; margin: 1rem auto;
+}
+
+/* ─── Ribbon badge on cards ─── */
+.unit-card { border-top: 4px solid var(--accent2); }
+.unit-card:hover { border-top-color: var(--accent); }
+
+/* ─── Stats ─── */
+.stat-number { color: #1e3a5f; }
+.stats-section { background: linear-gradient(135deg, #1e3a5f, #2d5491); }
+.stats-section .stat-number { color: #f4a71d; }
+.stats-section .stat-label { color: rgba(255,255,255,0.7); }
+.stats-section .section-title { color: #ffffff; }
+
+/* ─── Neon Line / Divider ─── */
+.neon-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4880a 30%, #f4a71d 50%, #d4880a 70%, transparent);
+    opacity: 0.6;
+}
+
+/* ─── Tech Banner ─── */
+.tech-banner { background: var(--accent2); border-color: transparent; }
+.tech-banner-item { color: rgba(255,255,255,0.6); }
+.tech-banner-item span { color: #f4a71d; }
+
+/* ─── Admin ─── */
+.admin-wrapper { background: var(--bg-primary); }
+.theme-preview-card { border: 2px solid var(--card-border); }
+.theme-preview-card.active { border-color: var(--accent); box-shadow: 0 8px 30px rgba(212,136,10,0.2); }

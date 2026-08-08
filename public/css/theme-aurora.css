@@ -1,0 +1,151 @@
+/* =============================================
+   THEME 1: AURORA TECH — Dark Futuristik
+   Warna: Navy + Neon Cyan + Electric Purple
+   ============================================= */
+
+:root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Backgrounds */
+    --bg-primary:    #080f1a;
+    --bg-secondary:  #0d1829;
+    --bg-tertiary:   #111e30;
+
+    /* Text */
+    --text-primary:  #e8f4ff;
+    --text-secondary:#8ba3bf;
+
+    /* Accent - Neon Cyan */
+    --accent:        #00e5ff;
+    --accent-rgb:    0, 229, 255;
+    --accent-glow:   rgba(0, 229, 255, 0.25);
+    --accent2:       #7c3aed;
+
+    /* Navbar */
+    --navbar-bg:     rgba(8, 15, 26, 0.85);
+    --navbar-border: rgba(0,229,255,0.15);
+    --navbar-shadow: 0 4px 30px rgba(0,229,255,0.1);
+
+    /* Cards */
+    --card-bg:       rgba(13,24,41,0.8);
+    --card-border:   rgba(0,229,255,0.12);
+    --card-radius:   16px;
+    --card-shadow-hover: 0 20px 60px rgba(0,229,255,0.15);
+
+    /* Buttons */
+    --btn-primary:       linear-gradient(135deg, #00e5ff 0%, #7c3aed 100%);
+    --btn-primary-text:  #080f1a;
+    --btn-shadow:        0 4px 20px rgba(0,229,255,0.3);
+    --btn-shadow-hover:  0 8px 40px rgba(0,229,255,0.5);
+
+    /* Slider */
+    --slider-btn-bg: rgba(0,229,255,0.2);
+    --dot-inactive:  rgba(255,255,255,0.2);
+
+    /* Input */
+    --input-bg:      rgba(13,24,41,0.9);
+    --input-border:  rgba(0,229,255,0.2);
+
+    /* Footer */
+    --footer-bg:     #040a12;
+
+    /* Tags/Badges */
+    --tag-bg:        rgba(0,229,255,0.1);
+    --badge-bg:      rgba(0,229,255,0.1);
+    --badge-border:  rgba(0,229,255,0.25);
+}
+
+/* ─── Hero Background ─── */
+.hero-bg {
+    background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(0,229,255,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 60% at 80% 80%, rgba(124,58,237,0.12) 0%, transparent 60%),
+                linear-gradient(180deg, #080f1a 0%, #0d1829 100%);
+}
+
+/* Animated Grid */
+.hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: grid-move 20s linear infinite;
+}
+@keyframes grid-move { from { transform: translateY(0); } to { transform: translateY(60px); } }
+
+/* ─── Hero Orbs ─── */
+.hero-orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+}
+.hero-orb-1 { width: 500px; height: 500px; background: rgba(0,229,255,0.08); top: -100px; left: -100px; animation: float 8s ease-in-out infinite; }
+.hero-orb-2 { width: 400px; height: 400px; background: rgba(124,58,237,0.1); bottom: -50px; right: -50px; animation: float 10s ease-in-out 2s infinite; }
+
+/* ─── Neon Glow Text ─── */
+.hero-title .highlight {
+    background: linear-gradient(135deg, #00e5ff, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(0,229,255,0.4));
+}
+
+/* ─── Neon Line ─── */
+.neon-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+    margin: 0;
+    opacity: 0.5;
+}
+
+/* ─── Card Glow Effect ─── */
+.unit-card {
+    background: rgba(13,24,41,0.85);
+    backdrop-filter: blur(20px);
+}
+.unit-card:hover {
+    border-color: rgba(0,229,255,0.5) !important;
+    box-shadow: 0 0 30px rgba(0,229,255,0.12), 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* ─── Section Divider ─── */
+.section-divider {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, #00e5ff, #7c3aed);
+    border-radius: 2px; margin: 1rem auto;
+}
+
+/* ─── Stats Glow ─── */
+.stat-number { text-shadow: 0 0 20px rgba(0,229,255,0.5); }
+
+/* ─── VM Card ─── */
+.vm-card { background: rgba(13,24,41,0.85); backdrop-filter: blur(20px); }
+
+/* ─── Scrolling Tech Banner ─── */
+.tech-banner {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+    overflow: hidden; padding: 1rem 0;
+}
+.tech-banner-track {
+    display: flex; gap: 3rem;
+    animation: scroll-left 20s linear infinite;
+    white-space: nowrap;
+}
+.tech-banner-item { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.tech-banner-item span { color: var(--accent); margin-right: 1rem; }
+@keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ─── Admin Card ─── */
+.admin-wrapper { min-height: 100vh; background: var(--bg-primary); padding-top: 72px; }
+.theme-preview-card {
+    background: var(--card-bg); border: 2px solid var(--card-border);
+    border-radius: 20px; overflow: hidden;
+    transition: all 0.3s; cursor: pointer;
+}
+.theme-preview-card.active { border-color: var(--accent); box-shadow: 0 0 30px var(--accent-glow); }
+.theme-preview-card:hover { transform: translateY(-6px); }
+.theme-preview-swatches { display: flex; height: 8px; }
+.theme-preview-swatch { flex: 1; }
